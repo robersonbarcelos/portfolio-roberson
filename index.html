@@ -583,6 +583,25 @@
     display: flex; align-items: center; justify-content: center;
     gap: 12px; margin-top: 18px;
   }
+  .fr-lightbox {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(4,5,8,0.92); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center; padding: 40px 20px;
+  }
+  .fr-lightbox.active { display: flex; }
+  .fr-lightbox-content {
+    display: flex; flex-direction: column; align-items: center; gap: 20px;
+    max-width: 480px; width: 100%;
+  }
+  .fr-lightbox-content img {
+    width: 100%; max-height: 78vh; object-fit: contain;
+    border-radius: 16px; background: #000;
+  }
+  .fr-lightbox-close {
+    position: absolute; top: 24px; right: 28px;
+    background: none; border: none; color: #fff; cursor: pointer;
+    padding: 8px;
+  }
   /* Info area */
   .fr-info {
     padding: 28px 48px 48px;
@@ -931,6 +950,16 @@
   </div>
 </section>
 
+<div class="fr-lightbox" id="frLightbox">
+  <button class="fr-lightbox-close" id="frLightboxClose" aria-label="Fechar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <div class="fr-lightbox-content">
+    <img id="frLightboxImg" src="" alt="">
+    <a class="fr-explore" href="#" id="frLightboxLink" target="_blank">Ver post ↗</a>
+  </div>
+</div>
+
 <div class="wrap"><hr class="full-rule"></div>
 
 <!-- ── VÍDEOS COM IA — FOCUS RAIL (LIGHT) ── -->
@@ -1204,6 +1233,18 @@
     }, 180);
   }
 
+  function openFrLightbox(i) {
+    const item = frItems[i];
+    document.getElementById('frLightboxImg').src = item.img;
+    document.getElementById('frLightboxImg').alt = item.title;
+    document.getElementById('frLightboxLink').href = item.href;
+    document.getElementById('frLightbox').classList.add('active');
+  }
+
+  function closeFrLightbox() {
+    document.getElementById('frLightbox').classList.remove('active');
+  }
+
   function initFocusRail() {
     const track = document.getElementById('frTrack');
     if (!track) return;
@@ -1219,6 +1260,7 @@
       `;
       card.addEventListener('click', () => {
         if (i !== frCurrent) { frCurrent = i; renderRail(frCurrent); }
+        else { openFrLightbox(i); }
       });
       track.appendChild(card);
     });
@@ -1396,6 +1438,14 @@
 
   initFocusRail();
   initVideoRail();
+
+  document.getElementById('frLightboxClose').addEventListener('click', closeFrLightbox);
+  document.getElementById('frLightbox').addEventListener('click', (e) => {
+    if (e.target.id === 'frLightbox') closeFrLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeFrLightbox();
+  });
 </script>
 </body>
 </html>
