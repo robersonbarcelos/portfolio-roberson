@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<title>Roberson Barcelos · Mídia Kit</title>
+<style>
+  /* ── TOKENS (hex para compatibilidade máxima) ── */
+  :root {
+    --ink:        #141820;
+    --ink-mid:    #545c6e;
+    --ink-faint:  #8a93a3;
+    --paper:      #f7f6f3;
+    --white:      #ffffff;
+    --surface:    #eeecea;
+    --rule:       #dddad6;
+    --accent:     #1847c8;
+    --accent-lt:  #eef1fc;
+    --hero-bg:    #111318;
+    --hero-rule:  #2e3140;
+    --hero-faint: #5a5f72;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e8e4dc; --ink-mid: #8a93a3; --ink-faint: #555e70;
+      --paper: #111318; --white: #181b22; --surface: #1d2029;
+      --rule: #2a2e3a; --accent: #5e7ef0; --accent-lt: #1a1f3a;
+      --hero-bg: #0a0c10; --hero-rule: #2a2e3a; --hero-faint: #5a5f72;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #e8e4dc; --ink-mid: #8a93a3; --ink-faint: #555e70;
+    --paper: #111318; --white: #181b22; --surface: #1d2029;
+    --rule: #2a2e3a; --accent: #5e7ef0; --accent-lt: #1a1f3a;
+    --hero-bg: #0a0c10; --hero-rule: #2a2e3a; --hero-faint: #5a5f72;
+  }
+  :root[data-theme="light"] {
+    --ink: #141820; --ink-mid: #545c6e; --ink-faint: #8a93a3;
+    --paper: #f7f6f3; --white: #ffffff; --surface: #eeecea;
+    --rule: #dddad6; --accent: #1847c8; --accent-lt: #eef1fc;
+    --hero-bg: #111318; --hero-rule: #2e3140; --hero-faint: #5a5f72;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.55s cubic-bezier(0.16,1,0.3,1),
+                transform 0.55s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .d1 { transition-delay: 0.08s; }
+  .d2 { transition-delay: 0.16s; }
+  .d3 { transition-delay: 0.24s; }
+  .d4 { transition-delay: 0.32s; }
+  .d5 { transition-delay: 0.40s; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none !important; }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background-color: #111318;
+    padding: 64px 48px 52px;
+  }
+  .hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 210px;
+    gap: 48px;
+    align-items: end;
+  }
+  .hero-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .hero-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.0;
+    color: #f0ede6;
+    text-wrap: balance;
+    margin-bottom: 12px;
+  }
+  .hero-role {
+    font-size: 14px;
+    color: #9098a8;
+    line-height: 1.55;
+    max-width: 40ch;
+    margin-bottom: 20px;
+  }
+  /* Especialidades como tags horizontais */
+  .hero-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 28px;
+  }
+  .spec-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #c8cfe0;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 4px;
+    padding: 4px 10px;
+  }
+  /* ── HERO COMBINADO A+D ── */
+  .hero-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 44px 32px 0;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .hero-avatar-ring {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e879f9, #f59e0b, #f97316);
+    padding: 2.5px;
+    margin-bottom: 16px;
+    flex-shrink: 0;
+  }
+  .hero-avatar-inner {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background: #1a1a2e;
+    display: flex; align-items: center; justify-content: center;
+    font-family: Georgia, serif; font-size: 22px; font-weight: 700;
+    color: #e8e4dc;
+  }
+  .hero-profile-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(24px, 4.5vw, 32px);
+    font-weight: 800;
+    color: #f0ede6;
+    letter-spacing: -1.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  .hero-profile-bio {
+    font-size: 13.5px;
+    color: #7a8398;
+    text-align: center;
+    line-height: 1.55;
+    max-width: 36ch;
+    margin-bottom: 18px;
+  }
+  .hero-profile-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+  .hero-ptag {
+    font-size: 11px; font-weight: 600;
+    color: #c0c8de;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.11);
+    border-radius: 5px;
+    padding: 5px 11px;
+    transition: background 0.18s, border-color 0.18s, color 0.18s;
+    cursor: default;
+  }
+  .hero-ptag:hover {
+    background: rgba(94,126,240,0.20);
+    border-color: rgba(94,126,240,0.50);
+    color: #a0b0ff;
+  }
+  /* faixa de separação */
+  .hero-rule { width: 100%; height: 1px; background: #1e2030; }
+  /* nav cards estilo D */
+  .hero-nav-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    width: 100%;
+    padding: 20px 24px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .hnc {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 18px 10px 14px;
+    text-decoration: none;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    transition: border-color 0.18s, background 0.18s, transform 0.2s cubic-bezier(0.16,1,0.3,1);
+    cursor: pointer;
+  }
+  .hnc:hover { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+  .hnc-icon { font-size: 22px; color: #7b8ab8; line-height: 1; }
+  .hnc-label { font-size: 11.5px; font-weight: 700; color: #c8cfe0; text-align: center; line-height: 1.2; }
+  .hnc-sub   { font-size: 9.5px; color: #4a5168; text-align: center; }
+  /* footer do hero */
+  .hero-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 32px 24px;
+    max-width: 560px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .hero-email { font-size: 11.5px; color: #3e4560; }
+  .hero-cta { font-size: 12px; font-weight: 700; color: #7c86ff; text-decoration: none; }
+  .hero-cta:hover { color: #a0aaff; }
+  /* Contato lado direito */
+  .hero-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-self: end;
+  }
+  .hero-aside-group {}
+  .hero-aside-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #3e4455;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .hero-aside a,
+  .hero-aside span {
+    display: block;
+    font-size: 12px;
+    color: #6a7080;
+    text-decoration: none;
+    line-height: 1.4;
+  }
+  .hero-aside a:hover { color: #c8cfe0; }
+
+  /* ── LAYOUT COMPARTILHADO ── */
+  .wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  .full-rule { border: none; border-top: 1px solid var(--rule); }
+  .section { padding: 52px 0; }
+  .section-eyebrow {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+  .section-heading {
+    font-family: Georgia, serif;
+    font-size: clamp(22px, 2.8vw, 27px);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 32px;
+    text-wrap: balance;
+    line-height: 1.2;
+  }
+
+  /* ── CASES ── */
+  .case-list { display: flex; flex-direction: column; }
+  .case-row {
+    display: grid;
+    grid-template-columns: 175px 1fr;
+    gap: 32px;
+    padding: 26px 0;
+    align-items: start;
+  }
+  .case-row:not(:last-child) { border-bottom: 1px solid var(--rule); }
+  .case-left { text-align: right; }
+  .case-num {
+    font-family: Georgia, serif;
+    font-size: clamp(34px, 4vw, 46px);
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -1px;
+    display: block;
+    font-variant-numeric: tabular-nums;
+  }
+  .case-platform {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    display: block;
+  }
+  .case-title {
+    font-family: Georgia, serif;
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .case-desc {
+    font-size: 13.5px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    max-width: 52ch;
+  }
+
+  /* ── CAROUSEL ── */
+  .carousel-track {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    cursor: grab;
+    padding-bottom: 2px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .carousel-track::-webkit-scrollbar { display: none; }
+  .carousel-track.dragging { cursor: grabbing; user-select: none; }
+
+  .rcard {
+    flex: 0 0 230px;
+    scroll-snap-align: start;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1),
+                box-shadow 0.3s cubic-bezier(0.16,1,0.3,1);
+  }
+  .rcard:hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(0,0,0,0.1); }
+  .rcard-img {
+    position: relative;
+    height: 170px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .rcard-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+  }
+  .rcard:hover .rcard-img img { transform: scale(1.06); }
+  .rcard-img::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.58) 100%);
+    pointer-events: none;
+  }
+  .rcard-badge {
+    position: absolute; top: 10px; left: 10px; z-index: 2;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #fff; background: var(--accent); border-radius: 4px; padding: 3px 8px;
+  }
+  .rcard-num {
+    position: absolute; bottom: 12px; left: 14px; z-index: 2;
+    font-family: Georgia, serif; font-size: 30px; font-weight: 700;
+    color: #fff; line-height: 1;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  }
+  .rcard-body {
+    padding: 13px 15px 15px; flex: 1;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .rcard-title { font-size: 13px; font-weight: 700; color: var(--ink); line-height: 1.35; }
+  .rcard-desc  { font-size: 11.5px; color: var(--ink-mid); line-height: 1.5; flex: 1; }
+  .rcard-meta {
+    display: flex; align-items: center; gap: 7px;
+    margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--rule);
+  }
+  .rcard-meta-icon {
+    width: 22px; height: 22px; border-radius: 5px;
+    background: var(--accent-lt); display: flex; align-items: center;
+    justify-content: center; font-size: 11px; flex-shrink: 0;
+  }
+  .rcard-meta-name { font-size: 10.5px; font-weight: 600; color: var(--ink-mid); }
+
+  .scroll-hint {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; color: var(--ink-faint); margin-top: 12px;
+  }
+
+  /* Post cards — aspecto quadrado/retrato */
+  .rcard-img--post { height: 210px; }
+
+  /* Play button sobreposto nos cards de vídeo */
+  .rcard-play {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .rcard:hover .rcard-play {
+    background: rgba(24,71,200,0.80);
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+  /* Duração do vídeo */
+  .rcard-duration {
+    position: absolute;
+    bottom: 10px; right: 10px;
+    z-index: 3;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #fff;
+    background: rgba(0,0,0,0.60);
+    border-radius: 4px;
+    padding: 2px 7px;
+    letter-spacing: 0.05em;
+  }
+  /* Card placeholder "em breve" */
+  .rcard--placeholder {
+    background: var(--surface);
+    border: 2px dashed var(--rule);
+    justify-content: center;
+    align-items: center;
+    min-height: 290px;
+  }
+  .rcard-placeholder-inner {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 8px;
+    padding: 24px;
+    text-align: center;
+  }
+  .placeholder-icon {
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--ink-faint);
+    line-height: 1;
+    width: 44px; height: 44px;
+    border: 2px solid var(--rule);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .placeholder-text {
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-weight: 500;
+  }
+
+  /* ── SERVIÇOS ── */
+  .services-table { display: flex; flex-direction: column; }
+  .svc-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    padding: 18px 0;
+    align-items: baseline;
+  }
+  .svc-row:not(:last-child) { border-bottom: 1px solid var(--rule); }
+  .svc-name { font-size: 14px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+  .svc-desc  { font-size: 13.5px; color: var(--ink-mid); line-height: 1.6; }
+
+  /* ── TOOLS ── */
+  .tools-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tool-chip {
+    background: var(--surface); border: 1px solid var(--rule);
+    border-radius: 6px; padding: 6px 13px;
+    font-size: 13px; font-weight: 500; color: var(--ink-mid);
+  }
+
+  /* ── CTA ── */
+  .footer-cta {
+    background-color: #1847c8;
+    padding: 60px 48px; text-align: center;
+  }
+  .footer-cta h2 {
+    font-family: Georgia, serif;
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 700; color: #fff;
+    margin-bottom: 10px; text-wrap: balance;
+  }
+  .footer-cta p { color: rgba(255,255,255,0.68); margin-bottom: 28px; font-size: 15px; }
+  .cta-btn {
+    display: inline-block; background: #fff;
+    color: #1847c8; font-weight: 700; font-size: 14px;
+    padding: 14px 30px; border-radius: 8px;
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: opacity 0.15s;
+  }
+  .cta-btn:hover { opacity: 0.86; }
+
+  /* ── FOCUS RAIL ── */
+  .fr-section {
+    background: #080a10;
+    overflow: hidden;
+    padding-bottom: 0;
+  }
+  .fr-rail-area {
+    position: relative;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .fr-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .fr-card {
+    position: absolute;
+    width: 240px;
+    height: 340px;
+    border-radius: 18px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1),
+                opacity 0.5s cubic-bezier(0.16,1,0.3,1),
+                filter 0.5s cubic-bezier(0.16,1,0.3,1);
+    will-change: transform, opacity, filter;
+  }
+  .fr-card img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .fr-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.75) 100%);
+    pointer-events: none;
+  }
+  .fr-card-badge {
+    position: absolute; top: 14px; left: 14px;
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #fff;
+    background: #1847c8; border-radius: 4px; padding: 3px 9px;
+  }
+  .fr-card-result {
+    position: absolute; bottom: 16px; left: 16px;
+    font-family: Georgia, serif; font-size: 28px;
+    font-weight: 700; color: #fff; line-height: 1;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+  }
+  /* Info area */
+  .fr-info {
+    padding: 28px 48px 48px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .fr-meta {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #5e7ef0; margin-bottom: 10px;
+    transition: opacity 0.3s;
+  }
+  .fr-title {
+    font-family: Georgia, serif;
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 700; color: #f0ede6;
+    letter-spacing: -0.4px; line-height: 1.2;
+    margin-bottom: 8px;
+    transition: opacity 0.3s;
+  }
+  .fr-desc {
+    font-size: 13.5px; color: #5a6278;
+    line-height: 1.6; margin-bottom: 22px;
+    max-width: 52ch; transition: opacity 0.3s;
+  }
+  .fr-controls {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .fr-nav {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid #1e2234;
+    background: rgba(255,255,255,0.04);
+    color: #8090b0; cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    padding: 0;
+  }
+  .fr-nav:hover { background: rgba(255,255,255,0.10); border-color: #3a4060; color: #e0e4f0; }
+  .fr-counter {
+    font-size: 12px; color: #3e4560; font-variant-numeric: tabular-nums;
+    min-width: 32px; text-align: center;
+  }
+  .fr-explore {
+    margin-left: auto;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #fff; color: #111318;
+    font-size: 13px; font-weight: 700;
+    padding: 10px 20px; border-radius: 50px;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.15s;
+  }
+  .fr-explore:hover { opacity: 0.88; transform: translateY(-1px); }
+  .fr-fade { opacity: 0; }
+
+  /* ── VIDEO RAIL (LIGHT) ── */
+  .vr-section {
+    background: #f7f6f3;
+    overflow: hidden;
+    padding-bottom: 0;
+  }
+  .vr-rail-area {
+    position: relative;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 32px;
+  }
+  .vr-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .vr-card {
+    position: absolute;
+    width: 240px;
+    height: 340px;
+    border-radius: 18px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1),
+                opacity 0.5s cubic-bezier(0.16,1,0.3,1),
+                filter 0.5s cubic-bezier(0.16,1,0.3,1),
+                box-shadow 0.5s;
+    will-change: transform, opacity, filter;
+    border: 1px solid #e8e4de;
+    background: #fff;
+  }
+  .vr-card img {
+    width: 100%; height: 60%;
+    object-fit: cover; display: block;
+  }
+  .vr-card-overlay {
+    position: absolute; top: 0; left: 0; right: 0; height: 60%;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.55) 100%);
+    pointer-events: none;
+  }
+  .vr-card-badge {
+    position: absolute; top: 12px; left: 12px;
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #fff;
+    background: #1847c8; border-radius: 4px; padding: 3px 9px;
+  }
+  .vr-card-play {
+    position: absolute; top: calc(60% / 2); left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,0.92);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+  .vr-card-duration {
+    position: absolute; bottom: calc(40% + 10px); right: 12px;
+    font-size: 10px; font-weight: 700; color: #fff;
+    background: rgba(0,0,0,0.6); border-radius: 3px; padding: 2px 6px;
+  }
+  .vr-card-body {
+    padding: 14px 16px 16px;
+    height: 40%;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .vr-card-tool {
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #8090b0; margin-bottom: 4px;
+  }
+  .vr-card-name {
+    font-family: Georgia, serif; font-size: 13px; font-weight: 700;
+    color: #141820; line-height: 1.35;
+  }
+  /* Info panel */
+  .vr-info {
+    padding: 28px 48px 52px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .vr-meta {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #1847c8; margin-bottom: 10px;
+    transition: opacity 0.3s;
+  }
+  .vr-title {
+    font-family: Georgia, serif;
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 700; color: #141820;
+    letter-spacing: -0.4px; line-height: 1.2;
+    margin-bottom: 8px;
+    transition: opacity 0.3s;
+  }
+  .vr-desc {
+    font-size: 13.5px; color: #545c6e;
+    line-height: 1.6; margin-bottom: 22px;
+    max-width: 52ch; transition: opacity 0.3s;
+  }
+  .vr-controls {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .vr-nav {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid #dddad6;
+    background: #fff;
+    color: #8a93a3; cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    padding: 0;
+  }
+  .vr-nav:hover { background: #f0ede8; border-color: #c0b8b0; color: #141820; }
+  .vr-counter {
+    font-size: 12px; color: #8a93a3; font-variant-numeric: tabular-nums;
+    min-width: 32px; text-align: center;
+  }
+  .vr-explore {
+    margin-left: auto;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #141820; color: #fff;
+    font-size: 13px; font-weight: 700;
+    padding: 10px 20px; border-radius: 50px;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.15s;
+  }
+  .vr-explore:hover { opacity: 0.82; transform: translateY(-1px); }
+  .vr-fade { opacity: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    .hero { padding: 44px 24px 40px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 24px; }
+    .hero-aside {
+      flex-direction: row; flex-wrap: wrap; gap: 12px;
+      border-top: 1px solid #2e3140; padding-top: 18px;
+    }
+    .hero-nav { grid-template-columns: 1fr; }
+    .wrap { padding: 0 24px; }
+    .case-row { grid-template-columns: 1fr; gap: 8px; }
+    .case-left { text-align: left; }
+    .svc-row { grid-template-columns: 1fr; gap: 4px; }
+    .footer-cta { padding: 44px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<header class="hero" style="padding:0;">
+
+  <!-- Topo: avatar + nome + bio + tags (estilo A) -->
+  <div class="hero-profile reveal">
+    <p style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#3e4560;margin-bottom:20px;">Mídia Kit &middot; Portfólio</p>
+    <div class="hero-avatar-ring">
+      <div class="hero-avatar-inner">RB</div>
+    </div>
+    <h1 class="hero-profile-name">Roberson Barcelos</h1>
+    <p class="hero-profile-bio">Estratégia de conteúdo, comunidade<br>e IA aplicada à produção digital.</p>
+    <div class="hero-profile-tags">
+      <span class="hero-ptag">Estratégia</span>
+      <span class="hero-ptag">Social Media</span>
+      <span class="hero-ptag">IA aplicada</span>
+      <span class="hero-ptag">Newsletter</span>
+      <span class="hero-ptag">Roteiros</span>
+      <span class="hero-ptag">Comunidade</span>
+    </div>
+  </div>
+
+  <div class="hero-rule"></div>
+
+  <!-- Chamada antes dos nav cards -->
+  <div style="text-align:center;padding:18px 32px 0;max-width:560px;margin:0 auto;" class="reveal d1">
+    <p style="font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#3e4560;margin-bottom:6px;">Portfólio</p>
+    <p style="font-family:Georgia,serif;font-size:17px;font-weight:700;color:#e0ddd6;line-height:1.3;">Conheça meu trabalho</p>
+  </div>
+
+  <!-- Nav cards (estilo D) -->
+  <div class="hero-nav-cards reveal d2">
+    <a class="hnc" href="#resultados">
+      <span class="hnc-icon"><i class="ti ti-chart-bar" aria-hidden="true"></i></span>
+      <span class="hnc-label">Resultados</span>
+      <span class="hnc-sub">Cases &amp; métricas</span>
+    </a>
+    <a class="hnc" href="#posts-virais">
+      <span class="hnc-icon"><i class="ti ti-flame" aria-hidden="true"></i></span>
+      <span class="hnc-label">Posts Virais</span>
+      <span class="hnc-sub">Instagram</span>
+    </a>
+    <a class="hnc" href="#videos-ia">
+      <span class="hnc-icon"><i class="ti ti-sparkles" aria-hidden="true"></i></span>
+      <span class="hnc-label">Vídeos com IA</span>
+      <span class="hnc-sub">Higgsfield · HeyGen</span>
+    </a>
+    <a class="hnc" href="#servicos">
+      <span class="hnc-icon"><i class="ti ti-briefcase" aria-hidden="true"></i></span>
+      <span class="hnc-label">Serviços</span>
+      <span class="hnc-sub">O que eu faço</span>
+    </a>
+  </div>
+
+  <!-- Rodapé do hero: email + contato -->
+  <div class="hero-footer reveal d2">
+    <span class="hero-email">roberson.barcelos@gmail.com</span>
+    <a href="mailto:roberson.barcelos@gmail.com" class="hero-cta">Contato →</a>
+  </div>
+
+</header>
+
+<!-- ── RESULTADOS ── -->
+<div class="wrap">
+  <section class="section" id="resultados">
+    <p class="section-eyebrow reveal">Resultados</p>
+    <div class="case-list">
+
+      <div class="case-row reveal">
+        <div class="case-left">
+          <span class="case-num">+110%</span>
+          <span class="case-platform">Instagram</span>
+        </div>
+        <div>
+          <div class="case-title">Crescimento orgânico de audiência</div>
+          <p class="case-desc">Construí junto ao infoprodutor as estratégias de posicionamento e conteúdo que levaram o perfil de 20 mil para 42 mil seguidores em 8 meses. Calendário editorial, formatos de alto engajamento e análise contínua de métricas.</p>
+        </div>
+      </div>
+
+      <div class="case-row reveal d1">
+        <div class="case-left">
+          <span class="case-num">+233%</span>
+          <span class="case-platform">Comunidade</span>
+        </div>
+        <div>
+          <div class="case-title">Base de membros pagantes</div>
+          <p class="case-desc">Desenvolvi e executei estratégias de crescimento e retenção que levaram a comunidade Intus Cripto Club de 150 para 500 membros ativos em menos de 1 ano via Discord e infoprodutos.</p>
+        </div>
+      </div>
+
+      <div class="case-row reveal d2">
+        <div class="case-left">
+          <span class="case-num">4.700</span>
+          <span class="case-platform">Newsletter</span>
+        </div>
+        <div>
+          <div class="case-title">Inscritos em newsletter em 1 ano</div>
+          <p class="case-desc">Construí do zero a Intus Cripto News com conteúdo técnico de nicho, tom editorial diferenciado e estratégia de distribuição que gerou 4.700 inscritos orgânicos em 12 meses.</p>
+        </div>
+      </div>
+
+      <div class="case-row reveal d3">
+        <div class="case-left">
+          <span class="case-num">3×</span>
+          <span class="case-platform">Produção com IA</span>
+        </div>
+        <div>
+          <div class="case-title">Volume de entregas semanais</div>
+          <p class="case-desc">Estruturei fluxo de produção com Claude, ChatGPT e Higgsfield que triplicou a quantidade de análises semanais sem perda de qualidade, liberando tempo para estratégia e comunidade.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<div class="wrap"><hr class="full-rule"></div>
+
+<!-- ── POSTS VIRAIS — FOCUS RAIL ── -->
+<section id="posts-virais" class="fr-section">
+  <div style="padding:52px 48px 0;max-width:680px;margin:0 auto;">
+    <p style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#3e4560;margin-bottom:8px;">Posts Virais</p>
+    <h2 style="font-family:Georgia,serif;font-size:clamp(22px,3.5vw,30px);font-weight:700;color:#f0ede6;letter-spacing:-0.5px;line-height:1.2;margin:0;">Conteúdo que performou no Instagram</h2>
+  </div>
+  <div class="fr-rail-area">
+    <div class="fr-track" id="frTrack"></div>
+  </div>
+  <div class="fr-info">
+    <div class="fr-meta" id="frMeta"></div>
+    <h2 class="fr-title" id="frTitle"></h2>
+    <p class="fr-desc" id="frDesc"></p>
+    <div class="fr-controls">
+      <button class="fr-nav" id="frPrev" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <span class="fr-counter" id="frCounter">1 / 4</span>
+      <button class="fr-nav" id="frNext" aria-label="Próximo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+      <a class="fr-explore" href="#" id="frLink" target="_blank">Ver post ↗</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="full-rule"></div>
+
+<!-- ── VÍDEOS COM IA — FOCUS RAIL (LIGHT) ── -->
+<section id="videos-ia" class="vr-section">
+  <div style="padding:52px 48px 0;max-width:680px;margin:0 auto;">
+    <p style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#8090b0;margin-bottom:8px;">Vídeos com IA</p>
+    <h2 style="font-family:Georgia,serif;font-size:clamp(22px,3.5vw,30px);font-weight:700;color:#141820;letter-spacing:-0.5px;line-height:1.2;margin:0;">Produção audiovisual com inteligência artificial</h2>
+  </div>
+  <div class="vr-rail-area">
+    <div class="vr-track" id="vrTrack"></div>
+  </div>
+  <div class="vr-info">
+    <div class="vr-meta" id="vrMeta"></div>
+    <h2 class="vr-title" id="vrTitle"></h2>
+    <p class="vr-desc" id="vrDesc"></p>
+    <div class="vr-controls">
+      <button class="vr-nav" id="vrPrev" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <span class="vr-counter" id="vrCounter">1 / 4</span>
+      <button class="vr-nav" id="vrNext" aria-label="Próximo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+      <a class="vr-explore" href="#" id="vrLink" target="_blank">Ver vídeo ↗</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="full-rule"></div>
+
+<!-- ── SERVIÇOS ── -->
+<div class="wrap">
+  <section class="section" id="servicos">
+    <p class="section-eyebrow reveal">Serviços</p>
+    <div class="services-table">
+      <div class="svc-row reveal">
+        <div class="svc-name">Estratégia de Conteúdo</div>
+        <div class="svc-desc">Planejamento editorial, calendário de publicações, análise de KPIs e posicionamento de marca digital.</div>
+      </div>
+      <div class="svc-row reveal d1">
+        <div class="svc-name">Gestão de Comunidade</div>
+        <div class="svc-desc">Crescimento de audiência, engajamento em Discord e infoprodutos, gestão de moderadores e membros pagantes.</div>
+      </div>
+      <div class="svc-row reveal d2">
+        <div class="svc-name">Roteiros e Scripts</div>
+        <div class="svc-desc">Roteirização para Reels, Shorts e TikTok com foco em retenção, conversão e posicionamento de autoridade.</div>
+      </div>
+      <div class="svc-row reveal d3">
+        <div class="svc-name">Newsletter e Copy</div>
+        <div class="svc-desc">Produção de newsletters e copy de alta conversão para email, landing pages e anúncios digitais.</div>
+      </div>
+      <div class="svc-row reveal d4">
+        <div class="svc-name">Automação com IA</div>
+        <div class="svc-desc">Estruturação de fluxos de produção com Claude, ChatGPT, Higgsfield e HeyGen para escalar entregas sem perder qualidade.</div>
+      </div>
+      <div class="svc-row reveal d5">
+        <div class="svc-name">Consultoria de Performance</div>
+        <div class="svc-desc">Diagnóstico de canal, estratégia de monetização e planejamento com foco em ROI para produtos digitais.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap"><hr class="full-rule"></div>
+
+<!-- ── STACK ── -->
+<div class="wrap">
+  <section class="section">
+    <p class="section-eyebrow reveal">Stack</p>
+    <div class="tools-row reveal d1">
+      <span class="tool-chip">Claude</span>
+      <span class="tool-chip">ChatGPT</span>
+      <span class="tool-chip">Higgsfield</span>
+      <span class="tool-chip">HeyGen</span>
+      <span class="tool-chip">Discord</span>
+      <span class="tool-chip">Ghost</span>
+      <span class="tool-chip">Instagram</span>
+      <span class="tool-chip">YouTube</span>
+      <span class="tool-chip">TikTok</span>
+      <span class="tool-chip">Notion</span>
+      <span class="tool-chip">Canva</span>
+    </div>
+  </section>
+</div>
+
+<!-- ── CTA ── -->
+<footer class="footer-cta">
+  <h2>Vamos trabalhar juntos?</h2>
+  <p>Aberto para projetos de conteúdo, comunidade e estratégia digital.</p>
+  <a href="mailto:roberson.barcelos@gmail.com" class="cta-btn">roberson.barcelos@gmail.com</a>
+</footer>
+
+<script>
+  /* ── FOCUS RAIL ── */
+  const frItems = [
+    {
+      meta: 'Instagram · Cripto',
+      title: 'Por que o Bitcoin valoriza quando o dólar sobe?',
+      desc: 'Thread explicativa sobre correlação BTC/DXY. Viralizou no nicho cripto com compartilhamentos orgânicos de influenciadores.',
+      result: '+1.2k saves',
+      badge: 'Top 1% alcance',
+      img: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=480&h=680&fit=crop',
+      href: '#'
+    },
+    {
+      meta: 'Instagram · Educacional',
+      title: 'Stablecoins: o dinheiro que não oscila',
+      desc: 'Carrossel didático sobre USDT, USDC e BUSD. Maior engajamento da conta em 2024 — salvo e compartilhado por leitores da newsletter.',
+      result: '+890 saves',
+      badge: 'Melhor engajamento',
+      img: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=480&h=680&fit=crop',
+      href: '#'
+    },
+    {
+      meta: 'Instagram · Análise',
+      title: 'Ethereum 2.0: o que mudou de verdade',
+      desc: 'Análise pós-merge. Publicado 48h após o evento — capturou o pico de busca orgânica e rendeu 3x o alcance médio dos posts.',
+      result: '3× alcance médio',
+      badge: 'Momento certo',
+      img: 'https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=480&h=680&fit=crop',
+      href: '#'
+    },
+    {
+      meta: 'Instagram · Comunidade',
+      title: 'DeFi explicado em 5 slides sem jargão',
+      desc: 'Série introdutória para novos seguidores. Resultado: +400 novos follows em 72h e 260 respostas nos Stories pedindo a parte 2.',
+      result: '+400 seguidores',
+      badge: 'Série mais salva',
+      img: 'https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=480&h=680&fit=crop',
+      href: '#'
+    },
+    {
+      meta: 'Instagram · Tendência',
+      title: 'RWA: como ativos reais chegam ao blockchain',
+      desc: 'Post publicado antes do tema explodir no Twitter. Primeiro conteúdo em PT-BR sobre o assunto — ganhou tração orgânica por ser pioneiro.',
+      result: '1º em PT-BR',
+      badge: 'Pioneiro no nicho',
+      img: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=480&h=680&fit=crop',
+      href: '#'
+    }
+  ];
+
+  let frCurrent = 0;
+  const CARD_W = 240, GAP = 24;
+
+  function renderRail(idx) {
+    const track = document.getElementById('frTrack');
+    if (!track) return;
+    const cards = track.querySelectorAll('.fr-card');
+    const centerX = track.offsetWidth / 2;
+
+    cards.forEach((card, i) => {
+      const dist = i - idx;
+      const offset = dist * (CARD_W + GAP);
+      const scale = dist === 0 ? 1 : Math.max(0.72, 0.82 - Math.abs(dist) * 0.06);
+      const opacity = dist === 0 ? 1 : Math.max(0.3, 0.55 - Math.abs(dist) * 0.1);
+      const blur = dist === 0 ? 0 : Math.min(6, Math.abs(dist) * 3);
+      card.style.transform = `translateX(${offset}px) scale(${scale})`;
+      card.style.opacity = opacity;
+      card.style.filter = blur > 0 ? `blur(${blur}px)` : 'none';
+      card.style.zIndex = 10 - Math.abs(dist);
+      card.style.pointerEvents = dist === 0 ? 'auto' : 'none';
+    });
+
+    const item = frItems[idx];
+    const fadeEls = [
+      document.getElementById('frMeta'),
+      document.getElementById('frTitle'),
+      document.getElementById('frDesc')
+    ];
+    fadeEls.forEach(el => { if (el) el.classList.add('fr-fade'); });
+    setTimeout(() => {
+      document.getElementById('frMeta').textContent = item.meta;
+      document.getElementById('frTitle').textContent = item.title;
+      document.getElementById('frDesc').textContent = item.desc;
+      document.getElementById('frCounter').textContent = `${idx + 1} / ${frItems.length}`;
+      document.getElementById('frLink').href = item.href;
+      fadeEls.forEach(el => { if (el) el.classList.remove('fr-fade'); });
+    }, 180);
+  }
+
+  function initFocusRail() {
+    const track = document.getElementById('frTrack');
+    if (!track) return;
+
+    frItems.forEach((item, i) => {
+      const card = document.createElement('div');
+      card.className = 'fr-card';
+      card.innerHTML = `
+        <img src="${item.img}" alt="${item.title}" loading="lazy">
+        <div class="fr-card-overlay"></div>
+        <span class="fr-card-badge">${item.badge}</span>
+        <span class="fr-card-result">${item.result}</span>
+      `;
+      card.addEventListener('click', () => {
+        if (i !== frCurrent) { frCurrent = i; renderRail(frCurrent); }
+      });
+      track.appendChild(card);
+    });
+
+    renderRail(frCurrent);
+
+    document.getElementById('frPrev').addEventListener('click', () => {
+      if (frCurrent > 0) { frCurrent--; renderRail(frCurrent); }
+    });
+    document.getElementById('frNext').addEventListener('click', () => {
+      if (frCurrent < frItems.length - 1) { frCurrent++; renderRail(frCurrent); }
+    });
+
+    // Touch swipe
+    let tx0 = 0;
+    track.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, {passive:true});
+    track.addEventListener('touchend', e => {
+      const dx = tx0 - e.changedTouches[0].clientX;
+      if (Math.abs(dx) > 40) {
+        if (dx > 0 && frCurrent < frItems.length - 1) frCurrent++;
+        else if (dx < 0 && frCurrent > 0) frCurrent--;
+        renderRail(frCurrent);
+      }
+    }, {passive:true});
+  }
+
+  /* ── VIDEO RAIL (LIGHT) ── */
+  const vrItems = [
+    {
+      meta: 'Higgsfield · Motion IA',
+      title: 'Título do vídeo aqui',
+      desc: 'Descreva o conceito, o roteiro e a técnica de IA usada. Substitua por dados reais ao compartilhar.',
+      tool: 'Higgsfield',
+      name: 'Intus Cripto',
+      duration: '0:45',
+      img: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=480&h=300&fit=crop',
+      href: '#'
+    },
+    {
+      meta: 'HeyGen · Avatar digital',
+      title: 'Título do vídeo aqui',
+      desc: 'Descreva o conceito, o roteiro e a técnica de IA usada. Substitua por dados reais ao compartilhar.',
+      tool: 'HeyGen',
+      name: 'Avatar digital',
+      duration: '1:20',
+      img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=480&h=300&fit=crop',
+      href: '#'
+    },
+    {
+      meta: 'Higgsfield · Reels com IA',
+      title: 'Título do vídeo aqui',
+      desc: 'Descreva o conceito, o roteiro e a técnica de IA usada. Substitua por dados reais ao compartilhar.',
+      tool: 'Higgsfield',
+      name: 'Reels · Intus Cripto',
+      duration: '0:30',
+      img: 'https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=480&h=300&fit=crop',
+      href: '#'
+    },
+    {
+      meta: 'HeyGen · YouTube Shorts',
+      title: 'Título do vídeo aqui',
+      desc: 'Descreva o conceito, o roteiro e a técnica de IA usada. Substitua por dados reais ao compartilhar.',
+      tool: 'HeyGen',
+      name: 'YouTube Shorts',
+      duration: '0:58',
+      img: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=480&h=300&fit=crop',
+      href: '#'
+    }
+  ];
+
+  let vrCurrent = 0;
+
+  function renderVideoRail(idx) {
+    const track = document.getElementById('vrTrack');
+    if (!track) return;
+    const cards = track.querySelectorAll('.vr-card');
+
+    cards.forEach((card, i) => {
+      const dist = i - idx;
+      const scale = dist === 0 ? 1 : Math.max(0.72, 0.82 - Math.abs(dist) * 0.06);
+      const opacity = dist === 0 ? 1 : Math.max(0.3, 0.55 - Math.abs(dist) * 0.1);
+      const blur = dist === 0 ? 0 : Math.min(6, Math.abs(dist) * 3);
+      const offset = dist * (CARD_W + GAP);
+      card.style.transform = `translateX(${offset}px) scale(${scale})`;
+      card.style.opacity = opacity;
+      card.style.filter = blur > 0 ? `blur(${blur}px)` : 'none';
+      card.style.zIndex = 10 - Math.abs(dist);
+      card.style.pointerEvents = dist === 0 ? 'auto' : 'none';
+      card.style.boxShadow = dist === 0 ? '0 8px 32px rgba(0,0,0,0.12)' : 'none';
+    });
+
+    const item = vrItems[idx];
+    const fadeEls = [
+      document.getElementById('vrMeta'),
+      document.getElementById('vrTitle'),
+      document.getElementById('vrDesc')
+    ];
+    fadeEls.forEach(el => { if (el) el.classList.add('vr-fade'); });
+    setTimeout(() => {
+      document.getElementById('vrMeta').textContent = item.meta;
+      document.getElementById('vrTitle').textContent = item.title;
+      document.getElementById('vrDesc').textContent = item.desc;
+      document.getElementById('vrCounter').textContent = `${idx + 1} / ${vrItems.length}`;
+      document.getElementById('vrLink').href = item.href;
+      fadeEls.forEach(el => { if (el) el.classList.remove('vr-fade'); });
+    }, 180);
+  }
+
+  function initVideoRail() {
+    const track = document.getElementById('vrTrack');
+    if (!track) return;
+
+    vrItems.forEach((item, i) => {
+      const card = document.createElement('div');
+      card.className = 'vr-card';
+      card.innerHTML = `
+        <img src="${item.img}" alt="${item.title}" loading="lazy">
+        <div class="vr-card-overlay"></div>
+        <span class="vr-card-badge">${item.tool}</span>
+        <div class="vr-card-play">
+          <svg viewBox="0 0 24 24" fill="#141820" width="20" height="20"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="vr-card-duration">${item.duration}</div>
+        <div class="vr-card-body">
+          <div class="vr-card-tool">${item.tool}</div>
+          <div class="vr-card-name">${item.name}</div>
+        </div>
+      `;
+      card.addEventListener('click', () => {
+        if (i !== vrCurrent) { vrCurrent = i; renderVideoRail(vrCurrent); }
+      });
+      track.appendChild(card);
+    });
+
+    renderVideoRail(vrCurrent);
+
+    document.getElementById('vrPrev').addEventListener('click', () => {
+      if (vrCurrent > 0) { vrCurrent--; renderVideoRail(vrCurrent); }
+    });
+    document.getElementById('vrNext').addEventListener('click', () => {
+      if (vrCurrent < vrItems.length - 1) { vrCurrent++; renderVideoRail(vrCurrent); }
+    });
+
+    let vx0 = 0;
+    track.addEventListener('touchstart', e => { vx0 = e.touches[0].clientX; }, {passive:true});
+    track.addEventListener('touchend', e => {
+      const dx = vx0 - e.changedTouches[0].clientX;
+      if (Math.abs(dx) > 40) {
+        if (dx > 0 && vrCurrent < vrItems.length - 1) vrCurrent++;
+        else if (dx < 0 && vrCurrent > 0) vrCurrent--;
+        renderVideoRail(vrCurrent);
+      }
+    }, {passive:true});
+  }
+
+  /* ── VIDEO CAROUSEL DRAG (removed — now FocusRail) ── */
+  function makeDraggable(track) {
+    if (!track) return;
+    let isDown = false, startX = 0, scrollLeft = 0;
+    track.addEventListener('mousedown', e => {
+      isDown = true; track.classList.add('dragging');
+      startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft;
+    });
+    ['mouseleave','mouseup'].forEach(ev => track.addEventListener(ev, () => {
+      isDown = false; track.classList.remove('dragging');
+    }));
+    track.addEventListener('mousemove', e => {
+      if (!isDown) return; e.preventDefault();
+      track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.25;
+    });
+  }
+  /* ── SCROLL REVEAL ── */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  initFocusRail();
+  initVideoRail();
+</script>
+</body>
+</html>
