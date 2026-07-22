@@ -670,7 +670,7 @@
   }
   .vr-rail-area {
     position: relative;
-    height: 400px;
+    height: 460px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -688,14 +688,23 @@
   .vr-card {
     position: absolute;
     width: 240px;
-    height: 340px;
+    height: 420px;
     border-radius: 18px;
     overflow: hidden;
     cursor: pointer;
+    background: #000;
+    display: flex;
+    flex-direction: column;
     transition: transform 0.5s cubic-bezier(0.16,1,0.3,1),
                 opacity 0.5s cubic-bezier(0.16,1,0.3,1),
                 filter 0.5s cubic-bezier(0.16,1,0.3,1);
     will-change: transform, opacity, filter;
+  }
+  .vr-card-imgwrap {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    background: #000;
   }
   .vr-card img {
     width: 100%; height: 100%;
@@ -703,7 +712,7 @@
   }
   .vr-card-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.75) 100%);
+    background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.55) 100%);
     pointer-events: none;
   }
   .vr-card-badge {
@@ -725,11 +734,14 @@
     font-size: 10px; font-weight: 700; color: #fff;
     background: rgba(0,0,0,0.5); border-radius: 3px; padding: 2px 6px;
   }
+  .vr-card-footer {
+    padding: 12px 16px 14px;
+    background: #12151c;
+    flex-shrink: 0;
+  }
   .vr-card-name {
-    position: absolute; bottom: 16px; left: 16px; right: 16px;
-    font-family: Georgia, serif; font-size: 20px;
-    font-weight: 700; color: #fff; line-height: 1.15;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+    font-family: Georgia, serif; font-size: 17px;
+    font-weight: 700; color: #fff; line-height: 1.2;
   }
   /* Info panel */
   .vr-info {
@@ -757,7 +769,7 @@
     max-width: 52ch; transition: opacity 0.3s;
   }
   .vr-controls {
-    display: flex; align-items: center; gap: 12px;
+    display: flex; flex-direction: column; gap: 16px;
   }
   .vr-nav {
     width: 36px; height: 36px; border-radius: 50%;
@@ -778,11 +790,11 @@
     min-width: 32px; text-align: center;
   }
   .vr-explore {
-    margin-left: auto;
-    display: inline-flex; align-items: center; gap: 6px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%;
     background: #141820; color: #fff;
-    font-size: 13px; font-weight: 700;
-    padding: 10px 20px; border-radius: 50px;
+    font-size: 15px; font-weight: 700;
+    padding: 16px 20px; border-radius: 14px;
     text-decoration: none;
     transition: opacity 0.15s, transform 0.15s;
   }
@@ -1385,14 +1397,18 @@
       const card = document.createElement('div');
       card.className = 'vr-card';
       card.innerHTML = `
-        <img src="${item.img}" alt="${item.title}" loading="lazy">
-        <div class="vr-card-overlay"></div>
-        <span class="vr-card-badge">${item.tool}</span>
-        <div class="vr-card-duration">${item.duration}</div>
-        <div class="vr-card-play">
-          <svg viewBox="0 0 24 24" fill="#141820" width="20" height="20"><path d="M8 5v14l11-7z"/></svg>
+        <div class="vr-card-imgwrap">
+          <img src="${item.img}" alt="${item.title}" loading="lazy">
+          <div class="vr-card-overlay"></div>
+          <span class="vr-card-badge">${item.tool}</span>
+          <div class="vr-card-duration">${item.duration}</div>
+          <div class="vr-card-play">
+            <svg viewBox="0 0 24 24" fill="#141820" width="20" height="20"><path d="M8 5v14l11-7z"/></svg>
+          </div>
         </div>
-        <div class="vr-card-name">${item.name}</div>
+        <div class="vr-card-footer">
+          <span class="vr-card-name">${item.name}</span>
+        </div>
       `;
       card.addEventListener('click', () => {
         if (i !== vrCurrent) { vrCurrent = i; renderVideoRail(vrCurrent); }
