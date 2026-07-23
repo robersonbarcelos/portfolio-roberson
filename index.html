@@ -1311,44 +1311,44 @@
   /* ── VIDEO RAIL (LIGHT) ── */
   const vrItems = [
     {
-      meta: 'Higgsfield · Motion IA',
-      title: 'Título do vídeo aqui',
-      desc: 'Descreva o conceito, o roteiro e a técnica de IA usada. Substitua por dados reais ao compartilhar.',
-      tool: 'Higgsfield',
-      name: 'Intus Cripto',
-      duration: '0:45',
-      img: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=480&h=300&fit=crop',
-      href: '#'
+      meta: 'Instagram · B-Roll e ganchos com IA',
+      title: 'B-roll e ganchos virais para reels e vídeos com IA',
+      desc: 'Produção de B-roll e ganchos visuais gerados com IA para reels, pensados para prender a atenção nos primeiros segundos do vídeo.',
+      tool: 'IA de vídeo',
+      name: 'B-roll e ganchos virais',
+      duration: '',
+      img: 'videos/video-01.jpg',
+      href: 'https://www.instagram.com/reel/Daz8fF9hztA/'
     },
     {
-      meta: 'HeyGen · Avatar digital',
-      title: 'Título do vídeo aqui',
-      desc: 'Descreva o conceito, o roteiro e a técnica de IA usada. Substitua por dados reais ao compartilhar.',
-      tool: 'HeyGen',
-      name: 'Avatar digital',
-      duration: '1:20',
-      img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=480&h=300&fit=crop',
-      href: '#'
+      meta: 'Instagram · Roteiro e criação de vídeo',
+      title: 'Mascote e cenário criados do zero para o Super Agente de IA',
+      desc: 'Criamos um personagem mascote e um cenário do zero para uma campanha do produto Super Agente de IA, com roteiro mostrando o que um agente de IA pode fazer no seu negócio enquanto você dorme.',
+      tool: 'Roteiro e vídeo',
+      name: 'Super Agente de IA',
+      duration: '',
+      img: 'videos/video-02.jpg',
+      href: 'https://www.instagram.com/reel/DaDv9zEJ3f4/'
     },
     {
-      meta: 'Higgsfield · Reels com IA',
-      title: 'Título do vídeo aqui',
-      desc: 'Descreva o conceito, o roteiro e a técnica de IA usada. Substitua por dados reais ao compartilhar.',
-      tool: 'Higgsfield',
-      name: 'Reels · Intus Cripto',
-      duration: '0:30',
-      img: 'https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=480&h=300&fit=crop',
-      href: '#'
+      meta: 'Instagram · Timing e trend viral',
+      title: 'Trend de Velozes e Furiosos adaptada para cripto',
+      desc: 'Pegamos a trend de Velozes e Furiosos, que estava bombando no momento, e adaptamos para o nicho cripto, aproveitando o timing viral da trend.',
+      tool: 'Trend adaptada',
+      name: 'Velozes e Furiosos · Cripto',
+      duration: '',
+      img: 'videos/video-03.jpg',
+      href: 'https://www.instagram.com/reel/DVJ2t-CAUp1/'
     },
     {
-      meta: 'HeyGen · YouTube Shorts',
-      title: 'Título do vídeo aqui',
-      desc: 'Descreva o conceito, o roteiro e a técnica de IA usada. Substitua por dados reais ao compartilhar.',
-      tool: 'HeyGen',
-      name: 'YouTube Shorts',
-      duration: '0:58',
-      img: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=480&h=300&fit=crop',
-      href: '#'
+      meta: 'Instagram · Roteiro e criação de vídeo',
+      title: 'Trump e Jerome Powell duelam no Street Fighter',
+      desc: 'Criamos um roteiro e todo o vídeo para representar a briga constante entre o presidente Trump e Jerome Powell, colocando os dois para lutar no Street Fighter clássico.',
+      tool: 'Roteiro e vídeo',
+      name: 'Trump vs Powell · Street Fighter',
+      duration: '',
+      img: 'videos/video-04.png',
+      href: 'https://www.instagram.com/reel/DTdkwAqgfhR/'
     }
   ];
 
@@ -1401,7 +1401,7 @@
           <img src="${item.img}" alt="${item.title}" loading="lazy">
           <div class="vr-card-overlay"></div>
           <span class="vr-card-badge">${item.tool}</span>
-          <div class="vr-card-duration">${item.duration}</div>
+          ${item.duration ? `<div class="vr-card-duration">${item.duration}</div>` : ''}
           <div class="vr-card-play">
             <svg viewBox="0 0 24 24" fill="#141820" width="20" height="20"><path d="M8 5v14l11-7z"/></svg>
           </div>
