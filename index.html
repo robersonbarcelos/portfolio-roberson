@@ -522,6 +522,18 @@
     transition: opacity 0.15s;
   }
   .cta-btn:hover { opacity: 0.86; }
+  .cta-actions {
+    display: flex; align-items: center; justify-content: center;
+    gap: 14px; flex-wrap: wrap;
+  }
+  .cta-whatsapp {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #25D366; color: #0b1a10; font-weight: 700; font-size: 14px;
+    padding: 14px 26px; border-radius: 8px;
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: opacity 0.15s;
+  }
+  .cta-whatsapp:hover { opacity: 0.86; }
 
   /* ── FOCUS RAIL ── */
   .fr-section {
@@ -1069,7 +1081,13 @@
 <footer class="footer-cta">
   <h2>Vamos trabalhar juntos?</h2>
   <p>Aberto para projetos de conteúdo, comunidade e estratégia digital.</p>
-  <a href="mailto:roberson.barcelos@gmail.com" class="cta-btn">roberson.barcelos@gmail.com</a>
+  <div class="cta-actions">
+    <a href="mailto:roberson.barcelos@gmail.com" class="cta-btn">roberson.barcelos@gmail.com</a>
+    <a href="https://wa.me/5555996862121" target="_blank" rel="noopener" class="cta-whatsapp">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0012.04 2zm5.8 14.14c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.12.11-1.81-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.13-4.9-4.32-.14-.19-1.17-1.56-1.17-2.98 0-1.42.75-2.11 1.01-2.4.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2 .88 2.15.07.15.11.32.02.51-.09.19-.14.31-.27.48-.13.17-.28.37-.4.5-.13.14-.27.28-.11.55.16.27.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.2 1.37.27.14.43.12.59-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.27.13.44.19.51.3.07.11.07.63-.16 1.24z"/></svg>
+      (55) 99686-2121
+    </a>
+  </div>
 </footer>
 
 <script>
